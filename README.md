@@ -1,2 +1,2 @@
-BuddyTracker
+Buddy Locator
 ============
