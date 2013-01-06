@@ -1,4 +1,4 @@
-﻿namespace BuddyLocator.Services
+﻿namespace BuddyLocator
 {
 	public static class ApiKeys
 	{

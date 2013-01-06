@@ -15,6 +15,11 @@
 
 		protected override void OnActivate()
 		{
+			Initialize();
+		}
+
+		public void Initialize()
+		{
 			Services.Events.Subscribe(this);
 			if (Services.State.User == null)
 			{
@@ -90,8 +95,10 @@
 		{
 			var location = Services.Location.GetLatestLocation();
 			nearbyPlaces.Clear();
+			BeginLoading("Finding Nearby Locations...");
 			Services.BuddyClient.GetNearbyLocations(Services.State.User, (places, state) =>
 			{
+				EndLoading();
 				Execute.OnUIThread(() => NearbyPlaces.AddRange(places));
 			}, 200, location.Longitude, location.Latitude);
 		}

@@ -77,16 +77,19 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
-    <Compile Include="Services\ApiKeys.cs" />
+    <Compile Include="Helpers\ApiKeys.cs" />
     <Compile Include="Services\ApplicationState.cs" />
+    <Compile Include="Helpers\ArgumentValidator.cs" />
     <Compile Include="Services\BuddyClient.cs" />
-    <Compile Include="Services\IBuddyClient.cs" />
-    <Compile Include="Services\ILocationService.cs" />
-    <Compile Include="Services\IServices.cs" />
-    <Compile Include="Services\ISettingsService.cs" />
+    <Compile Include="Services\Interfaces\IBuddyClient.cs" />
+    <Compile Include="Services\Interfaces\ILocationService.cs" />
+    <Compile Include="Services\Interfaces\IServices.cs" />
+    <Compile Include="Services\Interfaces\ISettingsService.cs" />
     <Compile Include="Services\LocationService.cs" />
+    <Compile Include="Helpers\ProgressIndicatorProxy.cs" />
     <Compile Include="Services\Services.cs" />
     <Compile Include="Services\SettingsService.cs" />
+    <Compile Include="Helpers\VisualTree.cs" />
     <Compile Include="ViewModels\CreateUserViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
