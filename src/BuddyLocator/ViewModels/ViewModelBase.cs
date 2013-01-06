@@ -34,7 +34,7 @@
 
 		protected void EndLoading()
 		{
-			isLoading = false;
+			IsLoading = false;
 		}
 	}
 }

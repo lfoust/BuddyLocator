@@ -57,9 +57,11 @@
     <Reference Include="Caliburn.Micro.Extensions">
       <HintPath>..\packages\Caliburn.Micro.1.4\lib\wp71\Caliburn.Micro.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Devices.Sensors" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -75,7 +77,16 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="Services\ApiKeys.cs" />
+    <Compile Include="Services\ApplicationState.cs" />
+    <Compile Include="Services\BuddyClient.cs" />
+    <Compile Include="Services\IBuddyClient.cs" />
+    <Compile Include="Services\ILocationService.cs" />
+    <Compile Include="Services\IServices.cs" />
+    <Compile Include="Services\ISettingsService.cs" />
+    <Compile Include="Services\LocationService.cs" />
     <Compile Include="Services\Services.cs" />
+    <Compile Include="Services\SettingsService.cs" />
     <Compile Include="ViewModels\CreateUserViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

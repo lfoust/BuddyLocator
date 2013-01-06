@@ -43,6 +43,7 @@
 				else
 				{
 					Services.State.User = user;
+					Services.Settings.UserToken = user.Token;
 					Execute.OnUIThread(() => Services.Navigation.UriFor<MainPageViewModel>().Navigate());
 				}
 			}, Username, Password);
