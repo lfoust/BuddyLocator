@@ -90,8 +90,12 @@
     <Compile Include="Services\Services.cs" />
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Helpers\VisualTree.cs" />
+    <Compile Include="ViewModels\CheckinViewModel.cs" />
     <Compile Include="ViewModels\CreateUserViewModel.cs" />
+    <Compile Include="ViewModels\ISupportsLoading.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\TabViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\CreateUserView.xaml.cs">
       <DependentUpon>CreateUserView.xaml</DependentUpon>
@@ -110,6 +114,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Views\CheckinView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\CreateUserView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -119,6 +127,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="BuddyLocator.Views.CheckinView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<StackPanel>
+		<StackPanel Orientation="Horizontal">
+			<TextBlock Text="Current Location" />
+			<TextBlock Text="{Binding CurrentLocation}" />
+		</StackPanel>
+		<HyperlinkButton Content="Check-in" x:Name="CheckIn" />
+		<TextBlock Text="Nearby Places" />
+		<ListBox ItemsSource="{Binding NearbyPlaces}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Name}" />
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</StackPanel>
+</UserControl>

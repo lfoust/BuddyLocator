@@ -1,26 +1,23 @@
 ﻿namespace BuddyLocator.ViewModels
 {
-	using System.Windows;
-	using Buddy;
 	using Caliburn.Micro;
-	using Microsoft.Phone.Tasks;
 	using Services;
 
-	public class MainPageViewModel : ViewModelBase, IHandle<TaskCompleted<PhotoResult>>
+	public class MainPageViewModel : Conductor<IScreen>.Collection.OneActive, ISupportsLoading
 	{
+		private IServices Services { get; set; }
+		private readonly CheckinViewModel checkin;
+		private readonly ProfileViewModel profile;
+
 		public MainPageViewModel(IServices services)
-			: base(services)
 		{
+			this.Services = services;
+			checkin = new CheckinViewModel(services);
+			profile = new ProfileViewModel(services);
 		}
 
-		protected override void OnActivate()
+		protected override void OnInitialize()
 		{
-			Initialize();
-		}
-
-		public void Initialize()
-		{
-			Services.Events.Subscribe(this);
 			if (Services.State.User == null)
 			{
 				string token = Services.Settings.UserToken;
@@ -38,109 +35,40 @@
 						if (user != null)
 						{
 							Services.State.User = user;
-							UserImage = Services.State.User.ProfilePicture.ToString();
-							UserName = Services.State.User.Name;
+							profile.RefreshUserInfo();
 						}
 					}, token);
 				}
 			}
-			else
-			{
-				UserImage = Services.State.User.ProfilePicture.ToString();
-				UserName = Services.State.User.Name;
-			}
+
+			Items.Add(profile);
+			Items.Add(checkin);
+			ActivateItem(Items[0]);
 		}
 
-		protected override void OnDeactivate(bool close)
+		private bool isLoading;
+		public bool IsLoading
 		{
-			Services.Events.Unsubscribe(this);
-			base.OnDeactivate(close);
+			get { return isLoading; }
+			set { isLoading = value; NotifyOfPropertyChange(() => IsLoading); }
 		}
 
-		private string userImage;
-		public string UserImage
+		private string loadingMessage;
+		public string LoadingMessage
 		{
-			get { return userImage; }
-			set { userImage = value; NotifyOfPropertyChange(() => UserImage); }
+			get { return loadingMessage; }
+			set { loadingMessage = value; NotifyOfPropertyChange(() => LoadingMessage); }
 		}
 
-		private string userName;
-		public string UserName
+		public void BeginLoading(string message)
 		{
-			get { return userName; }
-			set { userName = value; NotifyOfPropertyChange(() => UserName); }
+			LoadingMessage = message;
+			IsLoading = true;
 		}
 
-		private IObservableCollection<Buddy.Place> nearbyPlaces = new BindableCollection<Place>();
-		public IObservableCollection<Buddy.Place> NearbyPlaces
+		public void EndLoading()
 		{
-			get { return nearbyPlaces; }
-		}
-
-		public void UpdateLocation()
-		{
-			var location = Services.Location.GetLatestLocation();
-			BeginLoading("Checking in...");
-			Services.BuddyClient.UpdateLocation(Services.State.User, (result, state) =>
-			{
-				EndLoading();
-				if (result)
-				{
-					Execute.OnUIThread(() => MessageBox.Show("Checkin successful"));
-				}
-			}, location.Longitude, location.Latitude);
-		}
-
-		public void FindNearbyLocations()
-		{
-			var location = Services.Location.GetLatestLocation();
-			nearbyPlaces.Clear();
-			BeginLoading("Finding Nearby Locations...");
-			Services.BuddyClient.GetNearbyLocations(Services.State.User, (places, state) =>
-			{
-				EndLoading();
-				Execute.OnUIThread(() => NearbyPlaces.AddRange(places));
-			}, 200, location.Longitude, location.Latitude);
-		}
-
-		public void Logout()
-		{
-			Services.Settings.UserToken = null;
-			Services.State.User = null;
-			Services.Navigation.UriFor<LoginViewModel>().Navigate();
-		}
-
-		public void ChangePicture()
-		{
-			Services.Events.RequestTask<PhotoChooserTask>();
-		}
-
-		public void Handle(TaskCompleted<PhotoResult> message)
-		{
-			byte[] imageData = new byte[message.Result.ChosenPhoto.Length];
-			message.Result.ChosenPhoto.Read(imageData, 0, imageData.Length);
-
-			BeginLoading("Updating Profile Image...");
-			Services.BuddyClient.ChangeUserProfilePicture(Services.State.User, (result, state) =>
-			{
-				if (result)
-				{
-					// Refresh Image
-					Services.BuddyClient.Login((user, loginState) =>
-					{
-						EndLoading();
-						if (user != null)
-						{
-							Services.State.User = user;
-							UserImage = Services.State.User.ProfilePicture.ToString();
-						}
-					}, Services.State.User.Token);
-				}
-				else
-				{
-					Execute.OnUIThread(() => MessageBox.Show("Image Update NOT Successful"));
-				}
-			}, imageData);
+			IsLoading = false;
 		}
 	}
 }

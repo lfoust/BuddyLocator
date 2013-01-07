@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro" xmlns:u="clr-namespace:BuddyLocator.Services"
+    xmlns:Controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -20,30 +21,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="ApplicationTitle" Text="{StaticResource ApplicationName}" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="home" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+		<TextBlock x:Name="ApplicationTitle" Text="{StaticResource ApplicationName}" Style="{StaticResource PhoneTextNormalStyle}"/>
 
 		<u:ProgressIndicatorProxy IsIndeterminate="true" Text="{Binding LoadingMessage}" IsVisible="{Binding IsLoading}" />
 
-		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-			<StackPanel>
-				<StackPanel VerticalAlignment="Top" Orientation="Horizontal">
-					<Image Source="{Binding UserImage}" Stretch="None" />
-					<TextBlock Text="{Binding UserName}" />
-				</StackPanel>
-				<Button x:Name="Logout">Logout</Button>
-				<Button x:Name="ChangePicture">Change Picture</Button>
-				<ListBox ItemsSource="{Binding NearbyPlaces}">
-					<ListBox.ItemTemplate>
-						<DataTemplate>
-							<TextBlock Text="{Binding Name}" />
-						</DataTemplate>
-					</ListBox.ItemTemplate>
-				</ListBox>
-			</StackPanel>
-		</Grid>
+		<Controls:Pivot x:Name="Items" Grid.Row="1" />
     </Grid>
 
 	<phone:PhoneApplicationPage.ApplicationBar>

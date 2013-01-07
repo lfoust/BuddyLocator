@@ -3,7 +3,7 @@
 	using Caliburn.Micro;
 	using Services;
 
-	public abstract class ViewModelBase : Screen
+	public abstract class ViewModelBase : Screen, ISupportsLoading
 	{
 		public ViewModelBase(IServices services)
 		{
@@ -26,13 +26,13 @@
 			set { loadingMessage = value; NotifyOfPropertyChange(() => LoadingMessage); }
 		}
 
-		protected void BeginLoading(string message)
+		public virtual void BeginLoading(string message)
 		{
 			LoadingMessage = message;
 			IsLoading = true;
 		}
 
-		protected void EndLoading()
+		public virtual void EndLoading()
 		{
 			IsLoading = false;
 		}

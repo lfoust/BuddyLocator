@@ -8,7 +8,7 @@
     <!--Application Resources-->
     <Application.Resources>
 		<local:AppBootstrapper x:Key="bootstrapper" />
-		<system:String x:Key="ApplicationName">Buddy Locator</system:String>
+		<system:String x:Key="ApplicationName">BUDDY LOCATOR</system:String>
 		<cal:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
     </Application.Resources>
 </Application>
