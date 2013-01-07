@@ -1,5 +1,6 @@
 ﻿namespace BuddyLocator.ViewModels
 {
+	using System.Linq;
 	using Caliburn.Micro;
 	using Services;
 
@@ -18,6 +19,9 @@
 
 		protected override void OnInitialize()
 		{
+			Items.Add(profile);
+			Items.Add(checkin);
+
 			if (Services.State.User == null)
 			{
 				string token = Services.Settings.UserToken;
@@ -41,8 +45,6 @@
 				}
 			}
 
-			Items.Add(profile);
-			Items.Add(checkin);
 			ActivateItem(Items[0]);
 		}
 
@@ -64,11 +66,20 @@
 		{
 			LoadingMessage = message;
 			IsLoading = true;
+			foreach (ISupportsLoading child in Items.OfType<ISupportsLoading>())
+			{
+				child.LoadingMessage = message;
+				child.IsLoading = true;
+			}
 		}
 
 		public void EndLoading()
 		{
 			IsLoading = false;
+			foreach (ISupportsLoading child in Items.OfType<ISupportsLoading>())
+			{
+				child.IsLoading = false;
+			}
 		}
 	}
 }

@@ -58,7 +58,6 @@
 				EndLoading();
 				if (result)
 				{
-					Execute.OnUIThread(() => MessageBox.Show("Checkin successful"));
 					SetUpdatedLocation();
 				}
 			}, location.Longitude, location.Latitude);

@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="Helpers\ApiKeys.cs" />
+    <Compile Include="Helpers\BooleanNegationConverter.cs" />
     <Compile Include="Services\ApplicationState.cs" />
     <Compile Include="Helpers\ArgumentValidator.cs" />
     <Compile Include="Services\BuddyClient.cs" />

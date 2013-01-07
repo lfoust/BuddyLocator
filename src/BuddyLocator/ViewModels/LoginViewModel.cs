@@ -1,5 +1,6 @@
 ﻿namespace BuddyLocator.ViewModels
 {
+	using System.Windows;
 	using Buddy;
 	using Caliburn.Micro;
 	using Services;
@@ -15,14 +16,27 @@
 		public string Username
 		{
 			get { return username; }
-			set { username = value; NotifyOfPropertyChange(() => Username); }
+			set { username = value; NotifyOfPropertyChange(() => Username); EvaluateValid(); }
 		}
 
 		private string password;
 		public string Password
 		{
 			get { return password; }
-			set { password = value; NotifyOfPropertyChange(() => Password); }
+			set { password = value; NotifyOfPropertyChange(() => Password); EvaluateValid(); }
+		}
+
+		private bool isValid;
+		public bool IsValid
+		{
+			get { return isValid; }
+			set { isValid = value; NotifyOfPropertyChange(() => IsValid); }
+		}
+
+		private void EvaluateValid()
+		{
+			IsValid = !string.IsNullOrEmpty(Username) &&
+			          !string.IsNullOrEmpty(Password);
 		}
 
 		public void CreateNewUser()
@@ -32,13 +46,18 @@
 
 		public void LoginUser()
 		{
+			if (!IsValid)
+			{
+				return;
+			}
+
 			BeginLoading("Logging In...");
 			Services.BuddyClient.Login((user, state) =>
 			{
 				EndLoading();
 				if (state.Exception != null)
 				{
-					//TODO: Handle Error
+					Execute.OnUIThread(() => MessageBox.Show("Login not successful."));
 				}
 				else
 				{

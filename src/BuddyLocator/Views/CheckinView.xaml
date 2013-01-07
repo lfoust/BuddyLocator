@@ -7,8 +7,8 @@
 			<TextBlock Text="Current Location" />
 			<TextBlock Text="{Binding CurrentLocation}" />
 		</StackPanel>
-		<HyperlinkButton Content="Check-in" x:Name="CheckIn" />
-		<TextBlock Text="Nearby Places" />
+		<Button Content="Check-in" x:Name="CheckIn" />
+		<TextBlock Text="Nearby Places" Style="{StaticResource PhoneTextTitle2Style}" />
 		<ListBox ItemsSource="{Binding NearbyPlaces}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>

@@ -63,6 +63,9 @@
 
 		public void Handle(TaskCompleted<PhotoResult> message)
 		{
+			if (message.Result == null || message.Result.ChosenPhoto == null)
+				return;
+
 			byte[] imageData = new byte[message.Result.ChosenPhoto.Length];
 			message.Result.ChosenPhoto.Read(imageData, 0, imageData.Length);
 

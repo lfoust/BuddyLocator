@@ -16,10 +16,7 @@
 			{
 				parent.BeginLoading(message);
 			}
-			else
-			{
-				base.BeginLoading(message);
-			}
+			base.BeginLoading(message);
 		}
 
 		public override void EndLoading()
@@ -29,10 +26,7 @@
 			{
 				parent.EndLoading();
 			}
-			else
-			{
-				base.EndLoading();
-			}
+			base.EndLoading();
 		}
 	}
 }

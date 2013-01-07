@@ -1,5 +1,6 @@
 ﻿namespace BuddyLocator.ViewModels
 {
+	using System.Windows;
 	using Caliburn.Micro;
 	using Services;
 
@@ -63,16 +64,16 @@
 			BeginLoading("Creating User...");
 			
 			//First, check if the username is unique
-			Services.BuddyClient.CheckUserName((b, checkUserState) =>
+			Services.BuddyClient.CheckUserName((isUsernameTaken, checkUserState) =>
 			{
-				if (checkUserState.Exception == null)
+				if (!isUsernameTaken)
 				{
 					Services.BuddyClient.CreateUser((user, createUserState) =>
 					{
 						EndLoading();
 						if (createUserState.Exception != null)
 						{
-							//TODO: Handle Error
+							Execute.OnUIThread(() => MessageBox.Show("An error occured while creating user. Please try again."));
 						}
 						else
 						{
@@ -84,7 +85,7 @@
 				else
 				{
 					EndLoading();
-					//TODO: Handle username not unique
+					Execute.OnUIThread(() => MessageBox.Show("Username already taken. Please choose a new one an try again."));
 				}
 			}, Username);
 		}

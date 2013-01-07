@@ -10,5 +10,6 @@
 		<local:AppBootstrapper x:Key="bootstrapper" />
 		<system:String x:Key="ApplicationName">BUDDY LOCATOR</system:String>
 		<cal:BooleanToVisibilityConverter x:Key="VisibilityConverter" />
+		<local:BooleanNegationConverter x:Key="NegationConverter" />
     </Application.Resources>
 </Application>
