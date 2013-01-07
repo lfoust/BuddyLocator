@@ -29,20 +29,24 @@
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
 			<Grid.RowDefinitions>
-				<RowDefinition />
-				<RowDefinition />
-				<RowDefinition />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="60" />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
-				<ColumnDefinition />
+				<ColumnDefinition Width="110" />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
-			<TextBlock>Username:</TextBlock>
+			<TextBlock VerticalAlignment="Center">Username:</TextBlock>
 			<TextBox Grid.Column="1" Text="{Binding Username, Mode=TwoWay}" />
-			<TextBlock Grid.Row="1">Username:</TextBlock>
+			<TextBlock VerticalAlignment="Center" Grid.Row="1">Password:</TextBlock>
 			<PasswordBox Grid.Row="1" Grid.Column="1" Password="{Binding Password, Mode=TwoWay}" />
-			<Button Grid.Row="2" x:Name="CreateNewUser">Create New</Button>
-			<Button Grid.Row="2" Grid.Column="1" x:Name="LoginUser">Login</Button>
+			<Button Grid.Row="2" Grid.Column="1" x:Name="LoginUser" Width="200" HorizontalAlignment="Right">Login</Button>
+			<StackPanel Grid.Row="3" Grid.ColumnSpan="2" Margin="0,8,0,0" Orientation="Horizontal" Background="{StaticResource PhoneChromeBrush}">
+				<TextBlock VerticalAlignment="Center" Margin="8,0,0,0">Don't have an account?</TextBlock>
+				<HyperlinkButton x:Name="CreateNewUser">Create a new one</HyperlinkButton>
+			</StackPanel>
 		</Grid>
     </Grid>
  

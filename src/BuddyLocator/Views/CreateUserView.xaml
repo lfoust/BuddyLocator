@@ -28,21 +28,23 @@
 		<u:ProgressIndicatorProxy IsIndeterminate="true" Text="{Binding LoadingMessage}" IsVisible="{Binding IsLoading}" />
 
 		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-			<StackPanel>
-				<StackPanel Orientation="Horizontal">
-					<TextBlock>Username:</TextBlock>
-					<TextBox Text="{Binding Username, Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel Orientation="Horizontal">
-					<TextBlock>Password:</TextBlock>
-					<PasswordBox Password="{Binding Password, Mode=TwoWay}" />
-				</StackPanel>
-				<StackPanel Orientation="Horizontal">
-					<TextBlock>Confirm Password:</TextBlock>
-					<PasswordBox Password="{Binding ConfirmPassword, Mode=TwoWay}" />
-				</StackPanel>
-				<Button x:Name="CreateUser" IsEnabled="{Binding IsValid}">Create</Button>
-			</StackPanel>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+				<RowDefinition Height="80" />
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="110" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<TextBlock VerticalAlignment="Center">Username:</TextBlock>
+			<TextBox Grid.Column="1" Text="{Binding Username, Mode=TwoWay}" />
+			<TextBlock VerticalAlignment="Center" Grid.Row="1">Password:</TextBlock>
+			<PasswordBox Grid.Row="1" Grid.Column="1" Password="{Binding Password, Mode=TwoWay}" />
+			<TextBlock VerticalAlignment="Center" Grid.Row="2" TextWrapping="Wrap">Confirm Password:</TextBlock>
+			<PasswordBox Grid.Row="2" Grid.Column="1" Password="{Binding ConfirmPassword, Mode=TwoWay}" />
+			<Button Grid.Row="3" Grid.Column="1" x:Name="CreateUser" IsEnabled="{Binding IsValid}" Width="200" HorizontalAlignment="Right">Create</Button>
 		</Grid>
     </Grid>
  

@@ -28,17 +28,4 @@
 		<Controls:Pivot x:Name="Items" Grid.Row="1" />
     </Grid>
 
-	<phone:PhoneApplicationPage.ApplicationBar>
-		<shell:ApplicationBar IsVisible="True">
-			<shell:ApplicationBar.Buttons>
-				<cal:AppBarButton IconUri="ApplicationIcon.png"
-				                  Text="Update Location"
-				                  Message="UpdateLocation" />
-				<cal:AppBarButton IconUri="ApplicationIcon.png"
-				                  Text="Find Locations"
-				                  Message="FindNearbyLocations" />
-			</shell:ApplicationBar.Buttons>
-		</shell:ApplicationBar>
-	</phone:PhoneApplicationPage.ApplicationBar>
-
 </phone:PhoneApplicationPage>
