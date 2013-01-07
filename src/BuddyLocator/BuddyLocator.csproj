@@ -60,6 +60,9 @@
     <Reference Include="Microsoft.Devices.Sensors" />
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Controls.Toolkit">
+      <HintPath>..\packages\WPtoolkit.4.2012.10.30\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="System.Device" />
     <Reference Include="System.Windows" />
@@ -84,8 +87,10 @@
     <Compile Include="Services\BuddyClient.cs" />
     <Compile Include="Services\Interfaces\IBuddyClient.cs" />
     <Compile Include="Services\Interfaces\ILocationService.cs" />
+    <Compile Include="Services\Interfaces\INotificationService.cs" />
     <Compile Include="Services\Interfaces\IServices.cs" />
     <Compile Include="Services\Interfaces\ISettingsService.cs" />
+    <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\LocationService.cs" />
     <Compile Include="Helpers\ProgressIndicatorProxy.cs" />
     <Compile Include="Services\Services.cs" />

@@ -2,7 +2,6 @@
 {
 	using System;
 	using System.Collections.Generic;
-	using System.Device.Location;
 	using System.Diagnostics;
 	using System.Windows.Controls;
 	using Caliburn.Micro;
@@ -51,6 +50,7 @@
 			container.RegisterSingleton(typeof(IBuddyClient), null, typeof(BuddyClient));
 			container.RegisterSingleton(typeof(ILocationService), null, typeof(LocationService));
 			container.RegisterSingleton(typeof(ISettingsService), null, typeof(SettingsService));
+			container.RegisterSingleton(typeof(INotificationService), null, typeof(NotificationService));
 			container.PerRequest<MainPageViewModel>();
 			container.PerRequest<LoginViewModel>();
 			container.PerRequest<CreateUserViewModel>();

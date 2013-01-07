@@ -4,13 +4,14 @@
 
 	public class Services : IServices
 	{
-		public Services(INavigationService navigation, IBuddyClient buddyClient, IEventAggregator events, ILocationService location, ISettingsService settings)
+		public Services(INavigationService navigation, IBuddyClient buddyClient, IEventAggregator events, ILocationService location, ISettingsService settings, INotificationService notification)
 		{
 			this.Navigation = navigation;
 			this.BuddyClient = buddyClient;
 			this.Events = events;
 			this.Location = location;
 			this.Settings = settings;
+			this.Notification = notification;
 			this.State = new ApplicationState();
 		}
 
@@ -19,6 +20,7 @@
 		public IEventAggregator Events { get; private set; }
 		public ILocationService Location { get; private set; }
 		public ISettingsService Settings { get; private set; }
+		public INotificationService Notification { get; private set; }
 		public ApplicationState State { get; private set; }
 	}
 }

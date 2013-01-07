@@ -9,6 +9,7 @@
 		IEventAggregator Events { get; }
 		ILocationService Location { get; }
 		ISettingsService Settings { get; }
+		INotificationService Notification { get; }
 		ApplicationState State { get; }
 	}
 }

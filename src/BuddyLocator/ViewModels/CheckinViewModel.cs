@@ -1,5 +1,6 @@
 ﻿namespace BuddyLocator.ViewModels
 {
+	using System;
 	using System.Windows;
 	using Buddy;
 	using Caliburn.Micro;
@@ -59,6 +60,10 @@
 				if (result)
 				{
 					SetUpdatedLocation();
+					Services.Notification.UpdateLiveTile(
+						title: "New Check-in", 
+						backTitle: string.Format("{0:d}", DateTime.Now), 
+						backContent: String.Format("({0}, {1})", location.Latitude, location.Longitude));
 				}
 			}, location.Longitude, location.Latitude);
 		}

@@ -3,11 +3,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
 	<StackPanel>
-		<StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+		<StackPanel VerticalAlignment="Top" Orientation="Horizontal" Margin="0,0,0,15">
 			<Image Source="{Binding UserImage}" Stretch="None" Margin="0,0,8,0" />
-			<TextBlock Text="{Binding UserName}" Style="{StaticResource PhoneTextTitle1Style}" />
+			<TextBlock Text="{Binding UserName}" Style="{StaticResource PhoneTextTitle1Style}" Margin="0,-25,0,0" />
 		</StackPanel>
-		<Button x:Name="Logout" IsEnabled="{Binding IsLoading, Converter={StaticResource NegationConverter}}">Logout</Button>
-		<Button x:Name="ChangePicture" IsEnabled="{Binding IsLoading, Converter={StaticResource NegationConverter}}">Change Picture</Button>
+		<HyperlinkButton x:Name="Logout" IsEnabled="{Binding IsLoading, Converter={StaticResource NegationConverter}}" Style="{StaticResource EmptyButtonStyle}">Logout</HyperlinkButton>
+		<HyperlinkButton x:Name="ChangePicture" IsEnabled="{Binding IsLoading, Converter={StaticResource NegationConverter}}" Style="{StaticResource EmptyButtonStyle}">Change Picture</HyperlinkButton>
 	</StackPanel>
 </UserControl>

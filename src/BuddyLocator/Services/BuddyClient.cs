@@ -40,7 +40,7 @@
 
 		public void GetNearbyLocations(Buddy.AuthenticatedUser user, Action<List<Place>, BuddyCallbackParams> callback, int searchDistance, double longitude, double latitude)
 		{
-			user.Places.FindAsync(callback, searchDistance, latitude, longitude);
+			user.Places.FindAsync(callback, searchDistance, latitude, longitude, numberOfResults: 20);
 		}
 
 		public void ChangeUserProfilePicture(Buddy.AuthenticatedUser user, Action<bool, BuddyCallbackParams> callback, byte[] imageData)
